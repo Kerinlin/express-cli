@@ -1,38 +1,50 @@
 import { Router } from 'express';
-import selldata from './data/sellOrder.json'
+import matchOrderData from './data/matchOrderList.json'
+import price from './data/price.json'
+import buyOrder from './data/buyOrder.json'
+import sellOrder from './data/sellOrder.json'
+import depthChart from './data/depthChart.json'
+import priceChart from './data/priceChart.json'
 const routes = Router();
 
 /**
- * GET home page
+ * API
+ * getOrderList,
+ * getPrice,
+ * getOrder
+ * getChart
  */
-routes.get('/exchange/getOrderList', (req, res) => {
+routes.get('/order/getOrderList', (req, res) => {
   if (res) {
-    res.json({ "data": selldata, "message": 'ok' });
+    res.json({ "data": matchOrderData, "message": 'ok' });
   }
 });
 
-/**
- * GET /list
- *
- * This is a sample route demonstrating
- * a simple approach to error handling and testing
- * the global error handler. You most certainly want to
- * create different/better error handlers depending on
- * your use case.
- */
-routes.get('/list', (req, res, next) => {
-  const { title } = req.query;
-
-  if (title == null || title === '') {
-    // You probably want to set the response HTTP status to 400 Bad Request
-    // or 422 Unprocessable Entity instead of the default 500 of
-    // the global error handler (e.g check out https://github.com/kbariotis/throw.js).
-    // This is just for demo purposes.
-    next(new Error('The "title" parameter is required'));
-    return;
+routes.get('/order/getPrice', (req, res) => {
+  if (res) {
+    res.json({ "data": price, "message": 'ok' });
   }
+});
 
-  res.render('index', { title });
+routes.get('/order/getOrder', (req, res) => {
+  if (res) {
+    res.json({ "buyData": buyOrder, "sellData": sellOrder, "message": 'ok', });
+  }
+});
+
+// routes.get('/order/getSellList', (req, res) => {
+//   if (res) {
+//     res.json({ "data": sellOrder, "message": 'ok' });
+//   }
+// });
+
+routes.get('/order/getChart', (req, res) => {
+  if (res) {
+    res.json({
+      "depthData": depthChart, "message": 'ok',
+      "priceData": priceChart,
+    });
+  }
 });
 
 export default routes;
