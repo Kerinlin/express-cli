@@ -1,12 +1,14 @@
 import { Router } from 'express';
-
+import selldata from './data/sellOrder.json'
 const routes = Router();
 
 /**
  * GET home page
  */
-routes.get('/', (req, res) => {
-  res.render('index', { title: 'Express Babel' });
+routes.get('/exchange/getOrderList', (req, res) => {
+  if (res) {
+    res.json({ "data": selldata, "message": 'ok' });
+  }
 });
 
 /**

@@ -1,0 +1,16 @@
+{
+	"seller": [{
+		"price": 120,
+		"size": 1024
+	}, {
+		"price": 110,
+		"size": 1024
+	}],
+	"buyer": [{
+		"price": 100,
+		"size": 1024
+	}, {
+		"price": 190,
+		"size": 1024
+	}]
+}
